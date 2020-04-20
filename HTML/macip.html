@@ -1,0 +1,1432 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" version="XHTML+RDFa 1.0" dir="ltr">
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="/sites/all/modules/pinned_site/js/pinned_site.js"></script>
+<link rel="shortcut icon" href="http://ciscotips.ru/favicon.ico" type="image/vnd.microsoft.icon" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="application-name" content="Ciscotips.ru" />
+<meta name="msapplication-tooltip" content="Готовимся к сертификации Cisco" />
+<meta name="msapplication-starturl" content="http://ciscotips.ru" />
+<meta name="msapplication-navbutton-color" content="#000000" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/apple-touch-icon-152x152" />
+<meta name="msapplication-square70x70logo" content="/apple-touch-icon.png" />
+<meta name="msapplication-square150x150logo" content="/apple-touch-icon-152x152.png" />
+<meta name="msapplication-window" content="width=1024;height=768" />
+<meta name="MobileOptimized" content="width" />
+<meta name="description" content="Неподготовленный человек часто путает ip и mac адреса и не может чётко объяснить, где используются первые, а где вторые. На самом деле, они используются одновременно, но имеют разное назначение и смысл. Чтобы разобраться с этим, требуется вначале представлять себе структуру эталонной модели OSI. IP-адресация – это адресация третьего уровня, и сам по себе адрес является" />
+<meta name="keywords" content="новичкам, теория, маршрутизация" />
+<meta name="robots" content="follow, index" />
+<meta name="generator" content="Drupal" />
+<link rel="canonical" href="http://ciscotips.ru/ip-and-mac" />
+<link rel="shortlink" href="http://ciscotips.ru/node/37" />
+  <title>Разница между IP и MAC-адресами | CiscoTips</title>
+  <link type="text/css" rel="stylesheet" href="http://ciscotips.ru/sites/default/files/css/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://ciscotips.ru/sites/default/files/css/css_nvO6_bv2wd1vSDsIOv1vmrhQHgRlOxrKjhX6kqOJLqQ.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://ciscotips.ru/sites/default/files/css/css_jJ5WtItjXLSaqoHXmlGl1Sm5XE_vEzm3kc527_VWTl4.css" media="all" />
+<style type="text/css" media="all">
+<!--/*--><![CDATA[/*><!--*/
+#back-top{right:40px;}#back-top span#button{background-color:#CCCCCC;}#back-top span#button:hover{opacity:1;filter:alpha(opacity = 1);background-color:#777777;}
+
+/*]]>*/-->
+</style>
+<link type="text/css" rel="stylesheet" href="http://ciscotips.ru/sites/default/files/css/css_wYHx1IK_C0Fu6RWkR5_3J5BWkp_mKoSbsmFUmljnnD8.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://ciscotips.ru/sites/default/files/css/css_wswbyf33d2cVBbSF3Wfrrt2-oIdn7Lt2a4R4uDw2I1U.css" media="all" />
+  <script type="text/javascript" src="http://ciscotips.ru/sites/default/files/js/js_qikmINIYTWe4jcTUn8cKiMr8bmSDiZB9LQqvceZ6wlM.js"></script>
+<script type="text/javascript" src="http://ciscotips.ru/sites/default/files/js/js_COMsmDyrY9mzVU28X2uGvF4Ba3vd5eTo5xEO7dvCUZM.js"></script>
+<script type="text/javascript" src="http://ciscotips.ru/sites/default/files/js/js_Ib70s7AfHDGYD4Guc6LuA7Xz0k-TztYKqq4ZHgmEQvA.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"skeletontheme","theme_token":"72GR8ejzBkV9Mj0L2wSTK8gFWNU1mP5SrWt6SlKwbuw","js":{"misc\/jquery.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/comment_notify\/comment_notify.js":1,"public:\/\/languages\/ru_BXEv67MMsF4DwVaWQNZs9rE2_HN1wiAuJjj85biT8Tk.js":1,"sites\/all\/modules\/scroll_to_top\/scroll_to_top.js":1,"sites\/all\/modules\/captcha\/captcha.js":1,"misc\/textarea.js":1,"modules\/filter\/filter.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/comment_notify\/comment_notify.css":1,"sites\/all\/modules\/scroll_to_top\/scroll_to_top.css":1,"modules\/aggregator\/aggregator.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/poll\/poll.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/cctags\/cctags.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/geshifilter\/geshifilter.css":1,"0":1,"modules\/filter\/filter.css":1,"public:\/\/honeypot\/honeypot.css":1,"sites\/all\/themes\/skeletontheme\/css\/skeleton.css":1,"sites\/all\/themes\/skeletontheme\/css\/style.css":1,"sites\/all\/themes\/skeletontheme\/css\/buttons.css":1,"sites\/all\/themes\/skeletontheme\/css\/layout.css":1,"sites\/all\/themes\/skeletontheme\/color\/colors.css":1}},"scroll_to_top":{"label":"\u0432\u0432\u0435\u0440\u0445"},"urlIsAjaxTrusted":{"\/ip-and-mac":true,"\/comment\/reply\/37":true},"ckeditor":{"input_formats":{"filtered_html":{"customConfig":"\/sites\/all\/modules\/ckeditor\/ckeditor.config.js?","defaultLanguage":"en","toolbar":"\n[\n    [\u0027Source\u0027],\n    [\u0027Cut\u0027,\u0027Copy\u0027,\u0027Paste\u0027,\u0027PasteText\u0027,\u0027PasteFromWord\u0027,\u0027-\u0027,\u0027SpellChecker\u0027, \u0027Scayt\u0027],\n    [\u0027Undo\u0027,\u0027Redo\u0027,\u0027Find\u0027,\u0027Replace\u0027,\u0027-\u0027,\u0027SelectAll\u0027],\n    [\u0027Image\u0027,\u0027Media\u0027,\u0027Flash\u0027,\u0027Table\u0027,\u0027HorizontalRule\u0027,\u0027Smiley\u0027,\u0027SpecialChar\u0027],\n    [\u0027Maximize\u0027, \u0027ShowBlocks\u0027],\n    \u0027\/\u0027,\n    [\u0027Format\u0027],\n    [\u0027Bold\u0027,\u0027Italic\u0027,\u0027Underline\u0027,\u0027Strike\u0027,\u0027-\u0027,\u0027Subscript\u0027,\u0027Superscript\u0027,\u0027-\u0027,\u0027RemoveFormat\u0027],\n    [\u0027NumberedList\u0027,\u0027BulletedList\u0027,\u0027-\u0027,\u0027Outdent\u0027,\u0027Indent\u0027,\u0027Blockquote\u0027],\n    [\u0027JustifyLeft\u0027,\u0027JustifyCenter\u0027,\u0027JustifyRight\u0027,\u0027JustifyBlock\u0027,\u0027-\u0027,\u0027BidiLtr\u0027,\u0027BidiRtl\u0027],\n    [\u0027Link\u0027,\u0027Unlink\u0027,\u0027Anchor\u0027,\u0027Linkit\u0027]\n]\n    ","enterMode":1,"shiftEnterMode":2,"toolbarStartupExpanded":true,"width":"100%","skin":"moono","format_tags":"p;div;pre;address;h1;h2;h3;h4;h5;h6","show_toggle":"t","default":"t","ss":"2","loadPlugins":[],"entities":false,"entities_greek":false,"entities_latin":false,"scayt_autoStartup":false,"stylesCombo_stylesSet":"drupal:\/sites\/all\/modules\/ckeditor\/ckeditor.styles.js","contentsCss":["\/sites\/all\/modules\/ckeditor\/css\/ckeditor.css?q8x624","\/\/cdn.ckeditor.com\/4.5.4\/full-all\/contents.css?q8x624"]},"forum_text_format":{"customConfig":"\/sites\/all\/modules\/ckeditor\/ckeditor.config.js?","defaultLanguage":"ru","toolbar":"[\n    [\u0027Format\u0027,\u0027Bold\u0027,\u0027Italic\u0027,\u0027-\u0027,\u0027NumberedList\u0027,\u0027BulletedList\u0027,\u0027-\u0027,\u0027Link\u0027,\u0027Unlink\u0027,\u0027Image\u0027,\u0027Blockquote\u0027],\n    [\u0027RemoveFormat\u0027]\n]","enterMode":1,"shiftEnterMode":2,"toolbarStartupExpanded":true,"width":"100%","skin":"moono","format_tags":"p;div;pre;address;h1;h2;h3;h4;h5;h6","show_toggle":"f","default":"t","ss":"2","loadPlugins":{"drupalbreaks":{"name":"drupalbreaks","desc":"Plugin for inserting Drupal teaser and page breaks.","path":"\/sites\/all\/modules\/ckeditor\/plugins\/drupalbreaks\/","buttons":{"DrupalBreak":{"label":"DrupalBreak","icon":"images\/drupalbreak.png"}},"default":"t"},"image2":{"name":"image2","desc":"Enhanced Image plugin. See \u003Ca href=\u0022http:\/\/ckeditor.com\/addon\/image2\u0022\u003Eaddon page\u003C\/a\u003E for more details.","path":"\/\/cdn.ckeditor.com\/4.5.4\/full-all\/plugins\/image2\/","buttons":{"Enhanced Image":{"icon":"icons\/image.png","label":"Insert Enhanced Image"}},"default":"t"},"tableresize":{"name":"tableresize","desc":"Table Resize plugin. See \u003Ca href=\u0022http:\/\/ckeditor.com\/addon\/tableresize\u0022\u003Eaddon page\u003C\/a\u003E for more details.","path":"\/\/cdn.ckeditor.com\/4.5.4\/full-all\/plugins\/tableresize\/","buttons":false,"default":"t"}},"entities":false,"entities_greek":false,"entities_latin":false,"scayt_autoStartup":false,"stylesCombo_stylesSet":"drupal:\/sites\/all\/modules\/ckeditor\/ckeditor.styles.js","contentsCss":["\/sites\/all\/themes\/skeletontheme\/css\/skeleton.css?q8x624","\/sites\/all\/themes\/skeletontheme\/css\/style.css?q8x624","\/sites\/all\/themes\/skeletontheme\/css\/buttons.css?q8x624","\/sites\/all\/themes\/skeletontheme\/css\/layout.css?q8x624","\/sites\/all\/themes\/skeletontheme\/color\/colors.css?q8x624","\/sites\/all\/modules\/ckeditor\/css\/ckeditor.css?q8x624"]},"full_html":{"customConfig":"\/sites\/all\/modules\/ckeditor\/ckeditor.config.js?","defaultLanguage":"en","toolbar":"\n[\n    [\u0027Source\u0027],\n    [\u0027Cut\u0027,\u0027Copy\u0027,\u0027Paste\u0027,\u0027PasteText\u0027,\u0027PasteFromWord\u0027,\u0027-\u0027,\u0027SpellChecker\u0027, \u0027Scayt\u0027],\n    [\u0027Undo\u0027,\u0027Redo\u0027,\u0027Find\u0027,\u0027Replace\u0027,\u0027-\u0027,\u0027SelectAll\u0027],\n    [\u0027Image\u0027,\u0027Media\u0027,\u0027Flash\u0027,\u0027Table\u0027,\u0027HorizontalRule\u0027,\u0027Smiley\u0027,\u0027SpecialChar\u0027,\u0027Iframe\u0027],\n    \u0027\/\u0027,\n    [\u0027Bold\u0027,\u0027Italic\u0027,\u0027Underline\u0027,\u0027Strike\u0027,\u0027-\u0027,\u0027Subscript\u0027,\u0027Superscript\u0027,\u0027-\u0027,\u0027RemoveFormat\u0027],\n    [\u0027NumberedList\u0027,\u0027BulletedList\u0027,\u0027-\u0027,\u0027Outdent\u0027,\u0027Indent\u0027,\u0027Blockquote\u0027,\u0027CreateDiv\u0027],\n    [\u0027JustifyLeft\u0027,\u0027JustifyCenter\u0027,\u0027JustifyRight\u0027,\u0027JustifyBlock\u0027,\u0027-\u0027,\u0027BidiLtr\u0027,\u0027BidiRtl\u0027,\u0027-\u0027,\u0027Language\u0027],\n    [\u0027Link\u0027,\u0027Unlink\u0027,\u0027Anchor\u0027,\u0027Linkit\u0027],\n    [\u0027DrupalBreak\u0027],\n    \u0027\/\u0027,\n    [\u0027Format\u0027,\u0027Font\u0027,\u0027FontSize\u0027],\n    [\u0027TextColor\u0027,\u0027BGColor\u0027],\n    [\u0027Maximize\u0027, \u0027ShowBlocks\u0027]\n]\n    ","enterMode":1,"shiftEnterMode":2,"toolbarStartupExpanded":true,"width":"100%","skin":"moono","format_tags":"p;div;pre;address;h1;h2;h3;h4;h5;h6","show_toggle":"t","default":"t","ss":"2","loadPlugins":[],"entities":false,"entities_greek":false,"entities_latin":false,"scayt_autoStartup":false,"stylesCombo_stylesSet":"drupal:\/sites\/all\/modules\/ckeditor\/ckeditor.styles.js","contentsCss":["\/sites\/all\/modules\/ckeditor\/css\/ckeditor.css?q8x624","\/\/cdn.ckeditor.com\/4.5.4\/full-all\/contents.css?q8x624"]}},"plugins":[],"textarea_default_format":{"edit-comment-body-und-0-value":"autoformat_text"}}});
+//--><!]]>
+</script>
+</head>
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-37 node-type-article" >
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Перейти к основному содержанию</a>
+  </div>
+    <div id="wrap">
+    <div class="container">
+
+                <!-- #header-top -->
+        <div id="header-top" class="sixteen columns clearfix">
+
+                        <div class="one_half">
+              <div class="region region-header-top-left">
+    <div id="block-search-form" class="block block-search">
+
+
+  <div class="content">
+    <form action="/ip-and-mac" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container-inline">
+      <h2 class="element-invisible">Форма поиска</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Поиск </label>
+ <input title="Введите ключевые слова для поиска." type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
+</div>
+<div class="form-actions form-wrapper" id="edit-actions--2"><input type="submit" id="edit-submit--2" name="op" value="Поиск" class="form-submit" /></div><input type="hidden" name="form_build_id" value="form-BtTXy3NoE70Kzm1e8ihwX1D43O595z-NQnDIPVP663o" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>  </div>
+</div>
+  </div>
+            </div>
+
+            <div class="one_half last">
+              <div class="region region-header-top-right">
+    <div id="block-menu-menu-registermenu" class="block block-menu">
+
+
+  <div class="content">
+    <ul class="menu"><li class="first leaf"><a href="/user" title="Вход на сайт под своим аккаунтом — для комментирования и обсуждения на форуме.">Вход</a></li>
+<li class="last leaf"><a href="/user/register" title="Зарегистрируйся на сайте чтобы участвовать в обсуждениях и задавать вопросы.">Регистрация</a></li>
+</ul>  </div>
+</div>
+  </div>
+            </div>
+
+        </div><!-- /#header-top -->
+
+        <div class="clear"></div>
+
+        <!-- #header -->
+                <div id="header" class="sixteen columns clearfix">
+
+            <div class="inner">
+
+                                  <a href="/" title="Главная" rel="home" id="logo">
+                    <img src="http://ciscotips.ru/sites/default/files/logo.png" alt="Главная" />
+                  </a>
+
+                                <div id="name-and-slogan">
+
+                                        <div id="site-name">
+                    <a href="/" title="Главная" rel="home">CiscoTips</a>
+                    </div>
+
+                                        <div id="site-slogan">
+                    Готовимся к сертификации cisco. Материалы CCNA на русском.                    </div>
+
+                </div>
+                            </div>
+        </div><!-- /#header -->
+
+
+        <div class="clear"></div>
+
+        <!-- #navigation -->
+        <div id="navigation" class="sixteen columns clearfix">
+
+            <div class="menu-header">
+                            				<div class="content">
+				<ul class="menu"><li class="first leaf"><a href="/ccna-index" title="Список тем курса CCNA и учебные материалы">Темы CCNA</a></li>
+<li class="leaf"><a href="/certification" title="Порядок обучения, сертификации и сдачи тестов">Сертификация</a></li>
+<li class="leaf"><a href="/books" title="Список рекомендуемых книг по cisco на русском и английском языках.">Книги по cisco</a></li>
+<li class="leaf"><a href="/forum" title="Форум администраторов cisco: обсуждаем настройку оборудования, обучение, сертификацию.">Форум</a></li>
+<li class="leaf"><a href="/about" title="Информация о сайте, его создателе и авторских правах на материалы">О сайте</a></li>
+<li class="last leaf"><a href="https://www.instagram.com/ciscoacad/" title="Что происходит вокруг, как мы обучаем. Инстаграм академии.">Instargam</a></li>
+</ul>                </div>
+                        </div>
+
+        </div><!-- /#navigation -->
+
+
+                <div id="content" class="sixteen columns clearfix">
+
+
+
+            <div id="main">
+
+                <div id="highlighted" class="clearfix">  <div class="region region-highlighted">
+    <div id="block-block-13" class="block block-block">
+
+
+  <div class="content">
+    <script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+<div data-share-size="20" data-like-text-enable="false" data-background-alpha="0.0" data-pid="1296786" data-mode="share" data-background-color="ededed" data-share-shape="rectangle" data-icon-color="ffffff" data-share-counter-size="8" data-text-color="000000" data-buttons-color="ff9300" data-counter-background-color="ffffff" data-share-counter-type="common" data-orientation="horizontal" data-following-enable="false" data-sn-ids="fb.tw.vk.gp.lj.ev." data-selection-enable="true" data-share-style="2" data-counter-background-alpha="1.0" data-top-button="false" class="uptolike-buttons" ></div>  </div>
+</div>
+  </div>
+</div>
+
+                                <h1 class="title" id="page-title">
+                  Разница между IP и MAC-адресами                </h1>
+
+
+                                <div class="tabs">
+                                  </div>
+
+
+
+                <noindex>  <div class="region region-content">
+    <script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+<div id="node-37" class="node node-article node-promoted clearfix">
+
+
+  <script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+  <div class="content clearfix">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p>Неподготовленный человек часто путает ip и mac адреса и не может чётко объяснить, где используются первые, а где вторые. На самом деле, они используются одновременно, но имеют разное назначение и смысл. Чтобы разобраться с этим, требуется вначале представлять себе структуру <a href="/osi">эталонной модели OSI</a>. IP-адресация – это адресация третьего уровня, и сам по себе адрес является иерархическим, то есть часть адреса обозначает сеть адресата, а часть – идентификатор хоста внутри сети. </p>
+<p>Например, если есть адрес 192.168.1.2 с маской 255.255.255.0, то надо понимать, что 192.168.1.0 – это сеть, а 2 – это хост внутри этой сети. На самом деле, с точки зрения маршрутизаторов не имеет значения эта последняя двойка. Самое главное – доставить пакет в нужную сеть, а последний маршрутизатор на этом пути уже будет смотреть, как найти хост с номером два. </p>
+<p>MAC-адрес (адрес второго уровня), напротив, линейный, то есть отдельные компоненты адреса не имеют отдельного смысла (на самом деле, есть часть MAC-адреса, по которой можно определить производителя устройства, но в данном контексте это не имеет значения). Так вот, глядя на два MAC адреса можно сказать только одно: разные они или одинаковые. Нельзя понять, в одной они сети находятся или в разных.</p>
+<p>Таким образом, если мы, например, знаем MAC-адрес удалённого сервера, то это нам никак не поможет узнать, как отправить на него пакет, в силу отсутствия в адресе информации о сети адресата. MAC-адреса используются для идентификации разных устройств в пределах одной локальной сети. Приведём пример типичного использования MAC-адресов: есть сеть, в ней несколько компьютеров подключены к общему хабу. Один компьютер отправляет сообщение другому компьютеру, указывая в заголовке второго уровня MAC-адрес получателя. Все участники в сети получают фрейм. Тот хост, чей адрес указан принимает содержимое, а остальные видят, что это не им, и уничтожают фрейм. В случае использования коммутатора вместо хаба, процедура примерно такая же за исключением того, что коммутатор проводит некоторую фильтрацию по MAC-адресам, которая в данном контексте нам не важна.</p>
+<p>Итого, ip-адрес имеет стратегическое значение, указывая, куда глобально надо передать пакет, mac же имеет тактическое значение, в нём содержится информация, какому ближайшему устройству (из нашей же сети) нужно передать информацию.</p>
+<p>Чтобы было понятнее, давайте рассмотрим пример: клиент находится в одной сети, а сервер – в другой. Между ними два маршрутизатора.</p>
+<img src="/img/ip-and-mac/ip-and-mac.png" alt="Пример использования IP и MAC адресов" /><p>Для простоты будем считать, что во всех сетях маски подсети 255.255.255.0. Клиент отправляет запрос на сервер, в качестве шлюза по умолчанию, на нём прописан ip адрес ближайшего маршрутизатора – 192.168.1.1.</p>
+<ol><li>Клиент собирается отправить пакет на адрес 192.168.3.50, он сравнивает адрес сервера со своим и видит, что они находятся в разных сетях (сервер в 192.168.3.0, а клиент – в 192.168.1.0). Раз сети разные, значит нет смысла искать MAC сервера (ведь он нужен только для передачи в пределах одной сети) вместо этого нужно отправить пакет на MAC-адрес шлюза (R1), чтобы он уже дальше разбирался как доставить этот пакет.</li>
+<li>Клиент создаёт пакет, указывая в нём в качестве IP отправителя свой адрес – 191.168.1.10, а в качестве IP получателя адрес сервера – 192.168.3.50.</li>
+<li>Пакет заворачивается во фрейм, в котором MAC-адрес отправителя AAA, а в качестве MAC-адреса получателя стоит адрес шлюза – BBB.</li>
+<li>R1 получает фрейм, глядя на MAC BBB понимает, что фрейм ему, достаёт из него пакет и смотрит свою таблицу маршрутизации. В ней видно, что сеть 192.168.3.0 находится где-то справа и чтобы достичь её надо переслать фрейм маршрутизатору R2.</li>
+<li>R1 снова запаковывает тот же пакет но уже в новый фрейм, на этот раз MAC отправителя – CCC, MAC получателя – DDD, так как фрейм пойдёт уже по другой локальной сети где есть свой отправитель – R1 и свой получатель – R2. При этом, содержимое заголовка IP пакета не меняется – в нём по-прежнему адрес отправителя 192.168.1.10, а адрес получателя – 192.168.3.50</li>
+<li>R2 получает фрейм, видит что там стоит его MAC, соответственно фрейм надо распаковать и обработать. Когда фрейм декапсулирован, из него достаётся IP пакет. Глядя на адрес получателя, R2 видит, что пакет идёт в сеть 192.168.3.0, которая непосредственно подключена к R2. Таким образом, дальше не надо передавать содержимое никакому другому маршрутизатору, а надо передать непосредственному получателю.</li>
+<li>R2 переупаковывает всё тот же пакет в новый фрейм, ставя в качестве MAC-адреса отправителя свой адрес EEE, а в качестве адреса получателя – адрес сервера FFF. Внутри фрейма находится всё тот же пакет с теми же IP адресами, что и были на протяжении всего путешествия. Фрейм отправляется в последнюю локальную сеть 192.168.3.0</li>
+<li>Сервер получает фрейм, видит, что в нём его MAC (FFF), распаковывает фрейм и достаёт из него пакет, в пакете его IP (192.168.3.50) – значит можно продолжить обработку. Пакет распаковывается, из него достаются полезные данные и передаются далее внутри сервера нужному приложению для обработки.</li>
+</ol><p>Обратный процесс отправки ответа выглядит аналогичным образом. То есть, на протяжении всего путешествия пакета по сети, IP адреса отправителя и получателя в нём не меняются, так как именно основываясь на IP адресе получателя маршрутизатор решает, куда дальше пересылать пакет. А вот MAC-адреса меняются при каждом переходе из одной сети в другую. Каждый маршрутизатор ставит в качестве адреса отправителя свой MAC-адрес (точнее адрес того своего интерфейса, который смотри в нужную сеть, того интерфейса, с которого непосредственно будет выходить фрейм), а в качестве MAC-адреса получателя ставится адрес ближайшего устройства в следующей сети, то есть, либо следующего маршрутизатора, либо, если сеть уже достигнута, то непосредственного адресата, для которого предназначается информация в пакете.</p>
+<p>Стоит отметить, что коммутаторы и хабы не имеют ни MAC ни IP адресов и не занимаются переупаковкой. Они находятся внутри локальной сети и поэтому в приведённом примере их наличие никак не повлияло бы на процесс передачи информации. Главное в данном примере – это именно процесс прохождения маршрутизаторов. Отличное понимание приведённого примера является обязательным условием изучения дальнейшего материала и в частности понимания <a href="/routing">процесса маршрутизации</a>.</p>
+
+</div></div></div><div class="field field-name-field-course field-type-taxonomy-term-reference field-label-inline clearfix"><div class="field-label"> Относится к теме:&nbsp;</div><div class="field-items"><div class="field-item even"><a href="/ccna1-3">CCNA 1.3 — Сетевые протоколы и средства связи</a></div></div></div><div class="field field-name-field-tags field-type-taxonomy-term-reference field-label-above"><div class="field-label">Тэги:&nbsp;</div><div class="field-items"><div class="field-item even"><a href="/taxonomy/term/11">новичкам</a></div><div class="field-item odd"><a href="/taxonomy/term/26">теория</a></div><div class="field-item even"><a href="/taxonomy/term/28">маршрутизация</a></div></div></div>  </div>
+
+  <script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+  <div id="comments" class="comment-wrapper">
+          <h2 class="title">Комментарии</h2>
+
+  <a id="comment-31"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Гость (не проверено)</span>      </p>
+      <p class="comment-time">
+        пт, 07/11/2014 - 12:28      </p>
+      <p class="comment-permalink">
+        <a href="/comment/31#comment-31" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/31#comment-31" class="permalink" rel="bookmark">Таблица маршрутизации роутера</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Таблица маршрутизации роутера заполняется в момент включения роутера, в момент подключения последующих устройств к роутеру или по необходимости в момент передачи данных?<br />
+Насколько я понимаю, в таблице маршрутизации только ip адреса и нет mac адресов. Тогда как роутер определяет mac-адрес следующего пункта пересылки - он имеет также и таблицу коммутации или выполняется широковещательный запрос на все соединенные устройства?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/31">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-32"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        пт, 07/11/2014 - 19:28      </p>
+      <p class="comment-permalink">
+        <a href="/comment/32#comment-32" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/32#comment-32" class="permalink" rel="bookmark">Таблица маршрутизации</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">В момент включения маршрутизатора таблица пуста, как только поднимаются его интерфейсы (переходят в состояние up), появляются непосредственно подключенные сети и настроенные через эти интерфейсы статические маршруты. Чуть позже, когда протоколы маршрутизации обменяются данными, появляются и динамические маршруты. Но глобально, всё это порядка нескольких секунд с момента запуска, так что можно считать, что если всё нормально, то маршруты появляются почти сразу после включения.<br /><br />Что касается второго вопроса - маршрутизатор, как и компьютер, имеет ARP таблицу, хранящую взаимосвязь между IP и MAC адресами. При включении она пуста, когда надо к кому-то обратитсья, он отправляет широковещательный ARP запрос, узнаёт MAC, соответствующий интересующему IP-шнику, запоминает его в таблице на будущее и шлёт на него данные.<br /><br />Однако, это в теории, если брать практическую реализацию, то на современных маршрутизаторах применяется технология CEF (Cisco express forwarding), которая представляет из себя нечто вроде быстрого кэша, хранящего маршруты, маки, IP и интерфейсы для быстрой маршрутизации однотипных пакетов.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/32">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-33"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Гость (не проверено)</span>      </p>
+      <p class="comment-time">
+        вт, 07/15/2014 - 07:44      </p>
+      <p class="comment-permalink">
+        <a href="/comment/33#comment-33" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/33#comment-33" class="permalink" rel="bookmark">Спасибо за обстоятельный и</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Спасибо за обстоятельный и доступный ответ!</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/33">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div></div><a id="comment-175"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">ida-freewares.ru (не проверено)</span>      </p>
+      <p class="comment-time">
+        ср, 06/01/2016 - 12:10      </p>
+      <p class="comment-permalink">
+        <a href="/comment/175#comment-175" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/175#comment-175" class="permalink" rel="bookmark">Вообще, есть несколько</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Вообще, есть несколько способов узнать свой ip адрес, особенно учитывая, что сетевых плат или адаптеров может быть несколько. Поэтому иногда полезно использовать некоторые хитрости для их определения. Кстати, локальный ip адрес компьютера и его внешний достаточно часто отличаются, что частенько оставляют без внимания.</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/175">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-258"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Ольга (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 04/06/2017 - 01:10      </p>
+      <p class="comment-permalink">
+        <a href="/comment/258#comment-258" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/258#comment-258" class="permalink" rel="bookmark">Хотелось бы тоже </a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Хотелось бы тоже  присоединиться к комментарию выше)<br />
+Статья шикарна)как раз для тех, кто только-только погружается во все это)<br />
+Теперь точно добавлю ваш сайт в закладки для дальнейшего изучения)</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/258">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-259"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        пт, 04/07/2017 - 17:00      </p>
+      <p class="comment-permalink">
+        <a href="/comment/259#comment-259" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/259#comment-259" class="permalink" rel="bookmark">Спасибо. Будет желание</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Спасибо. Будет желание пообщаться - заходите на форум.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/259">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div><a id="comment-264"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Sanek (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 04/13/2017 - 11:58      </p>
+      <p class="comment-permalink">
+        <a href="/comment/264#comment-264" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/264#comment-264" class="permalink" rel="bookmark">Да класно написано, просто</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Да класно написано, просто для понимания спасибо!</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/264">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-265"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        чт, 04/13/2017 - 15:58      </p>
+      <p class="comment-permalink">
+        <a href="/comment/265#comment-265" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/265#comment-265" class="permalink" rel="bookmark">Спасибо, Санёк. Приятно</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Спасибо, Санёк. Приятно слышать.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/265">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div><a id="comment-266"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Алексей Сергеевич (не проверено)</span>      </p>
+      <p class="comment-time">
+        ср, 04/19/2017 - 16:43      </p>
+      <p class="comment-permalink">
+        <a href="/comment/266#comment-266" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/266#comment-266" class="permalink" rel="bookmark">Здраствуйте! Я прочел данную</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Здраствуйте! Я прочел данную статью в 2015, я проще и всеобьемляще не видел нигде. Автору большой респект честь слова!!!!!!!!!</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/266">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-271"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        пт, 04/21/2017 - 10:06      </p>
+      <p class="comment-permalink">
+        <a href="/comment/271#comment-271" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/271#comment-271" class="permalink" rel="bookmark">Спасибо, буду стараться</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Спасибо, буду стараться дальше.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/271">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-363"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Валерий (не проверено)</span>      </p>
+      <p class="comment-time">
+        сб, 12/16/2017 - 13:52      </p>
+      <p class="comment-permalink">
+        <a href="/comment/363#comment-363" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/363#comment-363" class="permalink" rel="bookmark">здравствуйте. я уже не молод</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>здравствуйте. я уже не молод и погоню за технологиями не осиливаю. Но в одном серьёзном вопросе хочу разобраться досконально, поэтому у меня к Вам просьба ( наверно со мной все пользователи интернета согласятся ) вот какая: В связи с тем, что в последнее время много внимания уделяется БИТКОИНАМ, которые , уже не по слухам, генерируются при помощи нас - пользователей через наши роутеры, прошу Вас так же схематично понятливо объяснить, КАК ПРИ ПОМОЩИ ИНТЕРНЕТ-СТАТИСТИКИ  ОБНАРУЖИТЬ &quot;ЧУЖОГО&quot; И В НАСТРОЙКАХ РОУТЕРА ВЫКЛЮЧИТЬ ИЛИ ЗАПРЕТИТЬ ПОСТОРОННИЕ СОЕДИНЕНИЯ ? ...........................буду очень признателен. <a href="mailto:allwithgood@mail.ru">allwithgood@mail.ru</a></p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/363">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-368"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        вт, 12/19/2017 - 23:20      </p>
+      <p class="comment-permalink">
+        <a href="/comment/368#comment-368" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/368#comment-368" class="permalink" rel="bookmark">Здравствуйте. Первый вопрос</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Здравствуйте. Первый вопрос про майнинг bitcoin на моём сайте :) Конечно, это не совсем по адресу. Майнинг производится не на роутерах, а на компьютерах пользователей. Происходит это так:</p>
+
+<ol><li>Человек заходит на вредоносный сайт/скачивает программу с вирусом/имеет операционную систему без обновлений/дырявый файрвол/отсутствующий антивирус (впишите своё)</li>
+	<li>На компьютер ставится вредоносное ПО (незаметно для вас) и начинает проводить вычисления в пользу аккаунта злоумышленника.</li>
+	<li>На маршрутизаторе (особенно бытовом), как мне кажется, такую активность отследить достаточно проблематично. Зато на компьютере её сложно не заметить. В первую очередь из-за ужасного падения производительности, нагревания видеокарты и прочих побочных явлений.</li>
+	<li>Трафика эта штука потребляет не много.</li>
+</ol><p>В общем, если у вас возникли подозрения - целесообразно вдумчиво проанализировать операционную систему, посмотреть процессы, нагрузку, обновить антивирус и т.п. Ну и есть общий набор джентельменских правил, чтобы такого не происходило: используйте сложные пароли, лицензионную и обновлённую ОС, антивирус с регулярными обновлениями, строгие правила сетевого экрана.</p></div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/368">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-369"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Гость (не проверено)</span>      </p>
+      <p class="comment-time">
+        ср, 12/20/2017 - 00:20      </p>
+      <p class="comment-permalink">
+        <a href="/comment/369#comment-369" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/369#comment-369" class="permalink" rel="bookmark">спасибо. мне всё понятно.</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>спасибо. мне всё понятно. всего вам хорошего.</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/369">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div></div></div><a id="comment-346"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Артём (не проверено)</span>      </p>
+      <p class="comment-time">
+        пн, 10/09/2017 - 00:58      </p>
+      <p class="comment-permalink">
+        <a href="/comment/346#comment-346" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/346#comment-346" class="permalink" rel="bookmark">Столько всяких видео</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Столько всяких видео посмотрел, столько статей перечитал, но ответы на свои вопросы нашёл здесь. Чисто примера последовательного ну оочень хватило!! Огромнейшее спасибо</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/346">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-347"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Артёмка (не проверено)</span>      </p>
+      <p class="comment-time">
+        пн, 10/09/2017 - 01:18      </p>
+      <p class="comment-permalink">
+        <a href="/comment/347#comment-347" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/347#comment-347" class="permalink" rel="bookmark">У меня вот два вопроса.</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>У меня вот два вопроса.<br />
+Первый:<br />
+Допустим, у нас есть роутер, который получил фрейм, но после него в цепи имеются два параллельных свича, после которых по маршруту к серверу стоит ещё один роутер. Первый роутер указывает mac свича? Если да, то как свич поймёт куда ему дальше посылать фрейм, если, например, помимо второго роутера к нему ещё парочка присоединена. Если mac указывается именно роутера, то получается, что посылается широковещательный сигнал на оба свича, которые посылают одинаковые фреймы роутеру номер 2? Немного не понимаю как в реальности расположены сетевые устройства в сети и как они друг друга адресуют. Если бы везде были только роутеры, то вопросов бы не было.<br />
+Второй:<br />
+Если я отправил http запрос серверу с указанием его доменного имени впервые (то есть нет в кэше ещё его ip), то как роутер поймёт куда тащить фреймы? У него внутри сразу таблица dns вшита или он сам отправляет запрос dns серверу? Да и вообще как бы как на сетевом уровне ещё на компьютере сформировать заголовок, если не известен ip? Может быть, перед отправкой и формированием пакетов, ip-протокол запрашивает у dns сервера ip, после чего уже продолжает трудиться?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/347">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-348"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        ср, 10/11/2017 - 11:21      </p>
+      <p class="comment-permalink">
+        <a href="/comment/348#comment-348" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/348#comment-348" class="permalink" rel="bookmark">Отвечаю на вопросы:</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Отвечаю на вопросы:</p>
+
+<ol><li>У коммутатора, конечно, есть MAC адрес, но он используется для пересылки трафика, адресованного самому коммутатору (например, для управления свичом). В вашем примере можно считать что у коммутатора нет MAC адреса, так как он не имеет отношения к делу.  Как два коммутатора могут подключаться паралельно? Через третий или через хаб? Из роутреа ведь один провод выходит.  Допустим, такая схема: роутер <strong>R1</strong>-хаб-два паралельных коммутатора <strong>S1</strong> и <strong>S2</strong>-хаб-следующий роутер <strong>R2</strong>. В этом случае получается петля на 2м уровне и сеть работать не будет. Если вы имеете в виду подключение роутера к двум свичам отдельными интерфейсами роутера, то это будет L3 петля, что допустимо, но тогда там должны исоплзоваться две разные IP подсети, на каждом интерфейсе свой IP и MAC адреса и роутер будет делать балансировку. В любом случае, MAC адрес получателя в этом примере - это MAC адрес целевого маршрутизатора, адреса коммутаторов роли не играют.</li>
+	<li>Роутер ничего не знает о доменных именах, он работает с полем "<em>IP адрес получателя</em>". Когда вы отправляете HTTP запрос, то HTTP инкапсулируется в TCP, а TCP - в IP. В IP пакете нельзя вбить доменное имя - только IP адрес получателя. Поэтому компьютер перед отправкой сам резолвит доменное имя, спрашивая у своего ДНС сервера:  "Какой IP  соответствует тому сайту, на который я собирался делать запрос". Получает IP и именно его вставляет в пакет и именно на этот IP и смотрит роутер чтобы осуществлять маршрутизацию.</li>
+</ol><p>Если у вас много подобных вопросов - я могу ответить на них оптом в рамках одного платного занятия по скайпу. Судя по тому, о чём вы спрашиваете - это может открыть вам глаза :)</p></div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/348">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div><a id="comment-356"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Александр Черножуков (не проверено)</span>      </p>
+      <p class="comment-time">
+        вс, 11/12/2017 - 02:59      </p>
+      <p class="comment-permalink">
+        <a href="/comment/356#comment-356" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/356#comment-356" class="permalink" rel="bookmark">Добрый день.</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Добрый день.<br />
+Клиент создаёт пакет, указывая в нём в качестве IP отправителя свой адрес – 191.168.1.10, а в качестве IP получателя адрес сервера – 192.168.3.50.</p>
+<p>Тогда вопрос, а где указывается сеть в которую нужно отправить пакет ? Насколько я знаю, то в пакете маска не указывается. Как тогда маршутизатор понимает в какую сеть доставить ?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/356">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-362"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        вт, 11/28/2017 - 09:44      </p>
+      <p class="comment-permalink">
+        <a href="/comment/362#comment-362" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/362#comment-362" class="permalink" rel="bookmark">Да, всё так. В пакете нет</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Да, всё так. В пакете нет маски. Но маска есть на отправляющем компьютере, так что он знает, что пакет не в его сеть и пересылает маршрутизатору.
+На маршрутизаторе в таблице все удалённые сети перечислены тоже с масками, поэтому он сопоставляет пакет с записями в своей таблице с учётом маски, относящейся к этим записям, а не маски, которой нет в пакете.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/362">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-481"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Александр Черножуков (не проверено)</span>      </p>
+      <p class="comment-time">
+        пт, 11/16/2018 - 23:44      </p>
+      <p class="comment-permalink">
+        <a href="/comment/481#comment-481" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/481#comment-481" class="permalink" rel="bookmark">А откуда в в таблицы</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>А откуда в в таблицы Маршутизации роутера берутся Маски и Сети ?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/481">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-482"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        пн, 11/19/2018 - 09:43      </p>
+      <p class="comment-permalink">
+        <a href="/comment/482#comment-482" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/482#comment-482" class="permalink" rel="bookmark">Тут есть три основных</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Тут есть три основных варианта:</p>
+
+<ol><li>Если говорить о сетях, которые непосредственно окружают маршрутизатор - он про них узнает автоматически в момент, когда на неком его интерфейсе назначается апи адрес с маской, он понимает, что соответствующая сеть с соответствующей маской находится радом с ним.</li>
+	<li>Удалённые сети могут добавляться в таблицу маршрутизации администратором вручную (<strong>статическая маршрутизация</strong>).</li>
+	<li>Или появляться благодаря <strong>динамической маршрутизации</strong> — когда один маршрутизатор рассказывает другому о сетях, которые к нему непосредственно подключены, другой передаёт третьему и т.п.</li>
+</ol><p>В любом случае сети из всех трёх источников вместе с маками появляются в таблице маршрутизации. Кроме того, стоит отметить, что маршрутизатор не обязан знать истиный размер удалённой сети и точную её маску. Он может иметь только общие предтавления (<strong>суммарные маршруты</strong> или <strong>маршрут по умолчанию</strong>), осталвляя решение по точной детализации сетей другому маргрутизатору, находящемуся ближе к цели.</p></div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/482">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div></div></div><a id="comment-394"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Ученик (не проверено)</span>      </p>
+      <p class="comment-time">
+        пт, 01/19/2018 - 15:16      </p>
+      <p class="comment-permalink">
+        <a href="/comment/394#comment-394" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/394#comment-394" class="permalink" rel="bookmark">Спасибо. Очень доступно и</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Спасибо. Очень доступно и понятно.</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/394">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-395"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">ПашаЕ (не проверено)</span>      </p>
+      <p class="comment-time">
+        пн, 01/22/2018 - 05:58      </p>
+      <p class="comment-permalink">
+        <a href="/comment/395#comment-395" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/395#comment-395" class="permalink" rel="bookmark">Да, как говорится, то, что</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Да, как говорится, то, что доктор прописал. Статья отличная.</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/395">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-428"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Иван минск (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 05/10/2018 - 01:43      </p>
+      <p class="comment-permalink">
+        <a href="/comment/428#comment-428" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/428#comment-428" class="permalink" rel="bookmark">Доступно и понятно. Особенно</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Доступно и понятно. Особенно пример.спасибо</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/428">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-445"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">Alexei (не проверено)</span>      </p>
+      <p class="comment-time">
+        пн, 07/23/2018 - 11:30      </p>
+      <p class="comment-permalink">
+        <a href="/comment/445#comment-445" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/445#comment-445" class="permalink" rel="bookmark">Здравствуйте, может вопрос не</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Здравствуйте, может вопрос не по теме, но я все же попытаюсь спросить.<br />
+Есть http сервер в интернете. А я нахожусь за NAT у меня адрес 192.168.1.11 и отправляю запрос на сервер 33.33.33.33 , сервер отвечает и пишет получателя 192.168.1.11 а в стране таких 192.168.1.11 очень много. Так как всётаки сервер отвечает клиенту?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/445">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-448"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        пн, 07/30/2018 - 11:13      </p>
+      <p class="comment-permalink">
+        <a href="/comment/448#comment-448" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/448#comment-448" class="permalink" rel="bookmark">Здравствуйте.</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Здравствуйте.
+Совершенно по теме вопрос. Если внимательно прочесть статью, то найдёте на него ответ.
+Смысл ната как раз в том, что между вами и сервером есть ваш маршрутизатор, у которого условно говоря есть белый адрес 2.2.2.2 и когда пакет проходит через него, маршрутизатор подменяет обратный адрес с 192.168.1.11 на 2.2.2.2 получается пакет с 2.2.2.2 на 33.33.33.33 и ответ будет с 33.33.33.33 на 2.2.2.2 - такой получатель только один. А маршрутизатор когда получит ответ подменит адрес получателя с 2.2.2.2 на 192.168.1.11, который в вашей сети тоже ровно один.
+Собственно это и называется трансляцией сетевых адресов )</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/448">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-471"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">АлексейАлексеев (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 10/11/2018 - 15:53      </p>
+      <p class="comment-permalink">
+        <a href="/comment/471#comment-471" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/471#comment-471" class="permalink" rel="bookmark">А таких белых адресов 2.2.2.2</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>А таких белых адресов 2.2.2.2 - в свою очередь - может быть тоже много вокруг получателя или вокруг получателя не может быть одинаковых? Спасибр.</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/471">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-478"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        вт, 11/06/2018 - 14:50      </p>
+      <p class="comment-permalink">
+        <a href="/comment/478#comment-478" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/478#comment-478" class="permalink" rel="bookmark">Адрес 2.2.2.2 белый, поэтому</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Адрес 2.2.2.2 белый, поэтому он только в один такой в мире. У получателя может быть несколько <strong>разных</strong> белых адресов. Но благодаря нату этим адресом 2.2.2.2 могут пользоваться много внутренних клиентов с серыми адресами.</p></div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/478">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div></div></div><a id="comment-472"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">АлексейАлексеев (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 10/11/2018 - 16:01      </p>
+      <p class="comment-permalink">
+        <a href="/comment/472#comment-472" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/472#comment-472" class="permalink" rel="bookmark">Здравствуйте! Не могу понять.</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Здравствуйте! Не могу понять. А почему возле каждого маршрутизатора есть по две приписки с разными  ip адресами? Это значит, что порты на одном маршрутизаторе могут быть в разных сетях?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/472">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-479"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        вт, 11/06/2018 - 14:52      </p>
+      <p class="comment-permalink">
+        <a href="/comment/479#comment-479" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/479#comment-479" class="permalink" rel="bookmark">Можно даже более сильное</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Можно даже более сильное утверждение сделать - у маршрутизатора разные порты обязаны быть в разных сетях. Маршрутизатор занимается пересылкой пакетов из одной сети в другую (другие) поэтому в каждой сети, которая к нему подключается, у него должен быть интерфейс и свой айпи адрес.</p></div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/479">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div><a id="comment-473"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">АлексейАлексеев (не проверено)</span>      </p>
+      <p class="comment-time">
+        чт, 10/11/2018 - 16:17      </p>
+      <p class="comment-permalink">
+        <a href="/comment/473#comment-473" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/473#comment-473" class="permalink" rel="bookmark">BBB=CCC
+DDD=EEE
+?     ?     ?</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>BBB=CCC<br />
+DDD=EEE<br />
+?     ?     ?</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/473">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+<a id="comment-602"></a>
+<div class="comment comment-by-anonymous clearfix">
+
+  <div class="attribution">
+
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">парамон генрихо... (не проверено)</span>      </p>
+      <p class="comment-time">
+        пн, 10/21/2019 - 21:41      </p>
+      <p class="comment-permalink">
+        <a href="/comment/602#comment-602" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/602#comment-602" class="permalink" rel="bookmark">Телевизор с функцией smart</a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even"><p>Телевизор с функцией smart принимает интернет без роутера и без приставки по технологии динамический IP без MAC-адреса,верно? Где в РФ это налажено? Спасибо!!!...</p>
+</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/602">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+
+<div class="indented"><a id="comment-606"></a>
+<div class="comment comment-by-node-author clearfix">
+
+  <div class="attribution">
+
+      <div class="user-picture">
+    <img src="http://ciscotips.ru/sites/default/files/styles/thumbnail/public/avatars/picture-1-1453463046.png?itok=O3U8PvNc" alt="Аватар пользователя bacek" title="Аватар пользователя bacek" />  </div>
+
+    <div class="submitted">
+      <p class="commenter-name">
+        <span class="username">bacek</span>      </p>
+      <p class="comment-time">
+        вт, 10/22/2019 - 15:40      </p>
+      <p class="comment-permalink">
+        <a href="/comment/606#comment-606" class="permalink" rel="bookmark">Постоянная ссылка (Permalink)</a>      </p>
+    </div>
+  </div>
+
+  <div class="comment-text">
+    <div class="comment-arrow"></div>
+
+
+<!--        <h3><a href="/comment/606#comment-606" class="permalink" rel="bookmark">Сумбурный вопрос ) DHCP </a></h3>
+     -->
+
+    <div class="content">
+      <div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even">Сумбурный вопрос ) DHCP (динамический айпи) работает всё-таки с MAC адресами, это самый простейший и стандартнейший способ, телевизор тут не причём в 99% организаций адреса назначаются именно так, причём не только в РФ, а во всём мире.</div></div></div>          </div> <!-- /.content -->
+
+    <ul class="links inline"><li class="comment-reply first last"><a href="/comment/reply/37/606">ответить</a></li>
+</ul>  </div> <!-- /.comment-text -->
+</div>
+</div>
+      <h2 class="title comment-form">Добавить комментарий</h2>
+    <form class="comment-form" action="/comment/reply/37" method="post" id="comment-form" accept-charset="UTF-8"><div><div class="form-item form-type-textfield form-item-name">
+  <label for="edit-name">Ваше имя </label>
+ <input type="text" id="edit-name" name="name" value="" size="30" maxlength="60" class="form-text" />
+</div>
+<div class="field-type-text-long field-name-comment-body field-widget-text-textarea form-wrapper" id="edit-comment-body"><div id="comment-body-add-more-wrapper"><div class="text-format-wrapper"><div class="form-item form-type-textarea form-item-comment-body-und-0-value">
+  <label for="edit-comment-body-und-0-value">Comment <span class="form-required" title="Обязательно для заполнения.">*</span></label>
+ <div class="form-textarea-wrapper resizable"><textarea class="text-full form-textarea required" id="edit-comment-body-und-0-value" name="comment_body[und][0][value]" cols="60" rows="5"></textarea></div>
+</div>
+<div class="filter-wrapper form-wrapper" id="edit-comment-body-und-0-format"></div></div>
+</div></div><input type="hidden" name="form_build_id" value="form-umLiqh03W9GEmdoS8IpnDdSMWzzZhXThelYAYM5i-i4" />
+<input type="hidden" name="form_id" value="comment_node_article_form" />
+<input type="hidden" name="honeypot_time" value="1587287446|9CF55fC3Nhb9Ri6HVwqtyX3zjsYwZ6GjPTXd-s_d0HI" />
+<input type="hidden" name="captcha_sid" value="2489822" />
+<input type="hidden" name="captcha_token" value="715c252a9a690d867a7af31caca541ee" />
+<div class="form-actions form-wrapper" id="edit-actions"><input type="submit" id="edit-submit" name="op" value="Сохранить" class="form-submit" /></div><div class="email-confirm-textfield"><div class="form-item form-type-textfield form-item-email-confirm">
+  <label for="edit-email-confirm">Leave this field blank </label>
+ <input autocomplete="off" type="text" id="edit-email-confirm" name="email-confirm" value="" size="20" maxlength="128" class="form-text" />
+</div>
+</div></div></form>  </div>
+
+</div>
+  </div>
+</noindex>
+
+            </div>
+
+        </div><!-- /#content -->
+
+
+        <div class="clear"></div>
+
+                <!-- #featured -->
+        <div id="featured" class="sixteen columns clearfix">
+
+
+              <div class="region region-featured-left">
+    <div id="block-block-20" class="block block-block">
+
+    <h2>Реклама</h2>
+
+  <div class="content">
+    <script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script>  </div>
+</div>
+  </div>
+
+
+        </div><!-- /#featured -->
+
+	</div>
+
+	<div id="footer" >
+        <div class="container">
+        	<div class="sixteen columns clearfix">
+
+                <div class="one_third">
+                  <div class="region region-footer-first">
+    <div id="block-block-14" class="block block-block">
+
+
+  <div class="content">
+    <div align="left"><noindex><a rel="noindex" href="https://hosting.reg.ru/?rid=809771"><img src="https://www.reg.ru/i/affiliate/hosting_80x60.jpg" alt="Хостинг" height="60" border="0" width="80" /></a></noindex></div>  </div>
+</div>
+  </div>
+                </div>
+
+                <div class="one_third">
+                  <div class="region region-footer-second">
+    <div id="block-block-11" class="block block-block">
+
+
+  <div class="content">
+    <div style="text-align:center;">
+<script type="text/javascript">(function(w,doc) {
+if (!w.__utlWdgt ) {
+    w.__utlWdgt = true;
+    var d = doc, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == w.location.protocol ? 'https' : 'http')  + '://w.uptolike.com/widgets/v1/uptolike.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+}})(window,document);
+</script>
+<div data-share-size="40" data-like-text-enable="false" data-background-alpha="0.0" data-pid="1296786" data-mode="follow" data-background-color="ededed" data-share-shape="rectangle" data-icon-color="ffffff" data-share-counter-size="14" data-text-color="000000" data-buttons-color="ff9300" data-counter-background-color="ffffff" data-share-counter-type="disable" data-orientation="horizontal" data-following-enable="false" data-sn-ids="fb.vk." data-selection-enable="true" data-share-style="2" data-follow-vk="ciscotips" data-counter-background-alpha="1.0" data-top-button="false" data-follow-fb="ciscotips" class="uptolike-buttons" ></div>
+</div>  </div>
+</div>
+  </div>
+                </div>
+
+                <div class="one_third last">
+                  <div class="region region-footer-third">
+    <div id="block-block-2" class="block block-block">
+
+
+  <div class="content">
+    <div style="text-align:right;">
+<!-- Yandex.Metrika informer -->
+<a href="https://metrika.yandex.ru/stat/?id=20759980&amp;from=informer"
+target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/20759980/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="20759980" data-lang="ru" /></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(20759980, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/20759980" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!--top.mail.ru--><!-- Rating@Mail.ru counter -->
+<script type="text/javascript">//<![CDATA[
+(function(w,n,d,r,s){d.write('<div><a href="http://top.mail.ru/jump?from=2334671"><img src="'+
+('https:'==d.location.protocol?'https:':'http:')+'//top-fwz1.mail.ru/counter?id=2334671;t=130;js=13'+
+((r=d.referrer)?';r='+escape(r):'')+((s=w.screen)?';s='+s.width+'*'+s.height:'')+';_='+Math.random()+
+'" style="border:0;" height="40" width="88" alt="Рейтинг@Mail.ru" /><\/a><\/div>');})(window,navigator,document);//]]>
+</script><noscript><div><a href="http://top.mail.ru/jump?from=2334671">
+<img src="//top-fwz1.mail.ru/counter?id=2334671;t=130;js=na" style="border:0;"
+height="40" width="88" alt="Рейтинг@Mail.ru" /></a></div></noscript>
+<!-- //Rating@Mail.ru counter --><!--/top.mail.ru-->
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t11.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: number of pageviews for 24 hours,"+
+" of visitors for 24 hours and for today is shown' "+
+"border='0' width='88' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1113686-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</div>  </div>
+</div>
+  </div>
+                </div>
+
+                <div class="clear"></div>
+
+                  <div class="region region-footer">
+    <div id="block-block-3" class="block block-block">
+
+
+  <div class="content">
+    <p>© 2012 — 2020 ciscotips.ru. Копирование любых материалов с сайта разрешается при условии публикации гиперссылки на оригинальную страницу на сайте. По вопросам сотрудничества, предложений, в случае обнаружения ошибки, обращайтесь по адресу <a href="mailto:admin@ciscotips.ru">admin@ciscotips.ru</a>.</p>  </div>
+</div>
+  </div>
+
+                <div class="clear"></div>
+
+        	</div>
+        </div>
+    </div>
+
+</div> <!-- /#wrap -->  </body>
+</html>
